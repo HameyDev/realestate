@@ -1,4 +1,4 @@
-import { type User, type InsertUser, type Property, type InsertProperty } from "@shared/schema";
+import { type User, type InsertUser, type Property, type InsertProperty, type Inquiry, type InsertInquiry } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 // modify the interface with any CRUD methods
@@ -15,15 +15,20 @@ export interface IStorage {
   createProperty(property: InsertProperty): Promise<Property>;
   updateProperty(id: string, property: Partial<InsertProperty>): Promise<Property | undefined>;
   deleteProperty(id: string): Promise<boolean>;
+  
+  // Inquiry methods
+  createInquiry(inquiry: InsertInquiry): Promise<Inquiry>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<string, User>;
   private properties: Map<string, Property>;
+  private inquiries: Map<string, Inquiry>;
 
   constructor() {
     this.users = new Map();
     this.properties = new Map();
+    this.inquiries = new Map();
     
     // Initialize with some sample properties
     this.initializeSampleProperties();
@@ -239,6 +244,20 @@ export class MemStorage implements IStorage {
 
   async deleteProperty(id: string): Promise<boolean> {
     return this.properties.delete(id);
+  }
+
+  async createInquiry(insertInquiry: InsertInquiry): Promise<Inquiry> {
+    const id = randomUUID();
+    const now = new Date();
+    const inquiry: Inquiry = {
+      ...insertInquiry,
+      phone: insertInquiry.phone ?? null,
+      propertyId: insertInquiry.propertyId ?? null,
+      id,
+      createdAt: now
+    };
+    this.inquiries.set(id, inquiry);
+    return inquiry;
   }
 }
 

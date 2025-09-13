@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertPropertySchema } from "@shared/schema";
+import { insertPropertySchema, insertInquirySchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Property routes
@@ -81,6 +81,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(204).send();
     } catch (error) {
       res.status(500).json({ error: "Failed to delete property" });
+    }
+  });
+
+  // POST /api/inquiries - Create a new inquiry
+  app.post("/api/inquiries", async (req, res) => {
+    try {
+      const validatedInquiry = insertInquirySchema.parse(req.body);
+      const newInquiry = await storage.createInquiry(validatedInquiry);
+      res.status(201).json({ message: "Inquiry sent successfully", inquiry: newInquiry });
+    } catch (error) {
+      res.status(400).json({ error: "Invalid inquiry data" });
     }
   });
 

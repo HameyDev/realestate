@@ -39,13 +39,19 @@ export default function PropertyDetailPage() {
 
   const { data: property, isLoading, error } = useQuery<Property>({
     queryKey: ['/api/properties', id],
-    queryFn: () => fetch(`/api/properties/${id}`).then(res => res.json()),
+    queryFn: async () => {
+      const res = await fetch(`/api/properties/${id}`);
+      if (!res.ok) {
+        throw new Error(`Property not found: ${res.status}`);
+      }
+      return res.json();
+    },
     enabled: !!id,
     refetchOnWindowFocus: false
   });
 
   const handleImageNavigation = (direction: 'prev' | 'next') => {
-    if (!property?.images.length) return;
+    if (!property?.images?.length) return;
     
     if (direction === 'prev') {
       setCurrentImageIndex(prev => 
@@ -62,21 +68,47 @@ export default function PropertyDetailPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      const inquiryData = {
+        propertyId: property?.id,
+        name: contactForm.name,
+        email: contactForm.email,
+        phone: contactForm.phone || null,
+        message: contactForm.message
+      };
 
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your inquiry. We'll get back to you within 24 hours.",
-    });
+      const response = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inquiryData),
+      });
 
-    // Reset form
-    setContactForm({
-      name: '',
-      email: '',
-      phone: '',
-      message: `Hi, I'm interested in ${property?.title || 'this property'}. Please contact me with more information.`
-    });
+      if (!response.ok) {
+        throw new Error('Failed to send inquiry');
+      }
+
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for your inquiry. We'll get back to you within 24 hours.",
+      });
+
+      // Reset form
+      setContactForm({
+        name: '',
+        email: '',
+        phone: '',
+        message: `Hi, I'm interested in ${property?.title || 'this property'}. Please contact me with more information.`
+      });
+
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send your inquiry. Please try again.",
+        variant: "destructive",
+      });
+    }
 
     setIsSubmitting(false);
   };
@@ -146,14 +178,14 @@ export default function PropertyDetailPage() {
         {/* Image Gallery */}
         <div className="relative aspect-[16/9] rounded-lg overflow-hidden mb-8 group">
           <img 
-            src={property.images[currentImageIndex] || '/placeholder-property.jpg'} 
+            src={property.images?.[currentImageIndex] || '/placeholder-property.jpg'} 
             alt={`${property.title} - Image ${currentImageIndex + 1}`}
             className="w-full h-full object-cover"
             data-testid="property-main-image"
           />
           
           {/* Image Navigation */}
-          {property.images.length > 1 && (
+          {property.images && property.images.length > 1 && (
             <>
               <button
                 onClick={() => handleImageNavigation('prev')}
@@ -172,7 +204,7 @@ export default function PropertyDetailPage() {
               
               {/* Image Indicators */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-                {property.images.map((_, index) => (
+                {property.images?.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
