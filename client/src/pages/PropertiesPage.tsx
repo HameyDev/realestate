@@ -28,11 +28,139 @@ export default function PropertiesPage() {
   const queryString = queryParams.toString();
   const apiUrl = `/api/properties${queryString ? `?${queryString}` : ''}`;
 
-  const { data: properties = [], isLoading, error } = useQuery<Property[]>({
+  const { data: propertiess = [], isLoading, error } = useQuery<Property[]>({
     queryKey: ['/api/properties', filters],
     queryFn: () => fetch(apiUrl).then(res => res.json()),
     refetchOnWindowFocus: false
   });
+
+  const properties = [
+      {
+        id: "1",
+        title: "Modern Family Home",
+        description: "Stunning modern home with gourmet kitchen, open floor plan, and premium finishes throughout. Perfect for entertaining with spacious living areas and a beautiful backyard oasis.",
+        price: "750000",
+        address: "123 Maple Ridge Drive",
+        city: "Springfield",
+        state: "CA",
+        zipCode: "90210",
+        propertyType: "house",
+        status: "For Sale",
+        bedrooms: 4,
+        bathrooms: "3.0",
+        squareFootage: 2800,
+        lotSize: "0.25",
+        yearBuilt: 2018,
+        images: ["/assets/a.png"],
+        amenities: ["Central Air", "Hardwood Floors", "Granite Countertops", "Walk-in Closet"],
+        features: ["Open Floor Plan", "Gourmet Kitchen", "Master Suite", "Two-Car Garage"],
+        isActive: true
+      },
+      {
+        id: "2",
+        title: "Luxury Townhome",
+        description: "Elegant townhome featuring spacious living areas, fireplace, and abundant natural light in desirable Heritage District location.",
+        price: "425000",
+        address: "456 Heritage Lane",
+        city: "Springfield",
+        state: "CA",
+        zipCode: "90211",
+        propertyType: "townhouse",
+        status: "For Sale",
+        bedrooms: 3,
+        bathrooms: "2.0",
+        squareFootage: 1950,
+        lotSize: "0.1",
+        yearBuilt: 2015,
+        images: ["/assets/b.png"],
+        amenities: ["Fireplace", "Patio", "Storage", "Laundry Room"],
+        features: ["Living Room Fireplace", "Private Patio", "Updated Kitchen"],
+        isActive: true
+      },
+      {
+        id: "3",
+        title: "Executive Condo",
+        description: "Sophisticated downtown condo with luxurious master suite, modern amenities, and city views.",
+        price: "650000",
+        address: "789 Downtown Plaza",
+        city: "Springfield",
+        state: "CA",
+        zipCode: "90212",
+        propertyType: "condo",
+        status: "Pending",
+        bedrooms: 2,
+        bathrooms: "2.0",
+        squareFootage: 1400,
+        yearBuilt: 2020,
+        images: ["/assets/c.png"],
+        amenities: ["City Views", "Balcony", "Gym Access", "Concierge"],
+        features: ["Floor-to-Ceiling Windows", "Modern Appliances", "Master Suite"],
+        isActive: true
+      },
+      {
+        id: "4",
+        title: "Suburban Retreat",
+        description: "Charming family home on quiet street with large yard, updated interior, and move-in ready condition.",
+        price: "595000",
+        address: "321 Greenwood Estate",
+        city: "Springfield",
+        state: "CA", 
+        zipCode: "90213",
+        propertyType: "house",
+        status: "For Sale",
+        bedrooms: 5,
+        bathrooms: "3.0",
+        squareFootage: 3200,
+        lotSize: "0.5",
+        yearBuilt: 2010,
+        images: ["/assets/d.png"],
+        amenities: ["Large Yard", "Updated Kitchen", "Hardwood Floors", "Three-Car Garage"],
+        features: ["Spacious Layout", "Family Room", "Formal Dining", "Home Office"],
+        isActive: true
+      },
+      {
+        id: "5",
+        title: "Historic Townhouse",
+        description: "Beautifully restored historic townhouse with original character, modern updates, and prime Old Town location.",
+        price: "485000",
+        address: "654 Old Town Square",
+        city: "Springfield",
+        state: "CA",
+        zipCode: "90214",
+        propertyType: "townhouse",
+        status: "For Sale",
+        bedrooms: 3,
+        bathrooms: "2.0",
+        squareFootage: 2100,
+        lotSize: "0.08",
+        yearBuilt: 1925,
+        images: ["/assets/e.png"],
+        amenities: ["Historic Character", "Updated Systems", "Original Details", "Courtyard"],
+        features: ["Restored Original Features", "Modern Kitchen", "Exposed Brick"],
+        isActive: true
+      },
+      {
+        id: "6",
+        title: "Contemporary Villa",
+        description: "Stunning contemporary home with panoramic views, premium materials, and resort-style backyard.",
+        price: "950000",
+        address: "987 Hillside Heights",
+        city: "Springfield", 
+        state: "CA",
+        zipCode: "90215",
+        propertyType: "house",
+        status: "Sold",
+        bedrooms: 4,
+        bathrooms: "4.0",
+        squareFootage: 3500,
+        lotSize: "0.75",
+        yearBuilt: 2021,
+        images: ["/assets/b.png"],
+        amenities: ["Panoramic Views", "Pool", "Spa", "Wine Cellar"],
+        features: ["Gourmet Kitchen", "Master Suite", "Home Theater", "Guest House"],
+        isActive: true
+      }
+    ];
 
   const filteredProperties = properties?.filter(property =>
     property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -221,7 +349,7 @@ export default function PropertiesPage() {
                 <PropertyCard
                   key={property.id}
                   id={property.id}
-                  image={property.images[0] || '/placeholder-property.jpg'}
+                  image={property.images[0]}
                   title={property.title}
                   price={`$${parseInt(property.price).toLocaleString()}`}
                   location={`${property.city}, ${property.state}`}

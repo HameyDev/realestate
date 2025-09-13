@@ -25,7 +25,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
               <Building className="h-8 w-8" />
-              <span className="ml-2 text-xl font-bold font-serif">Premier Real Estate</span>
+              <span className="ml-2 text-xl font-bold font-serif">Rawalpindi Builders And Developers (PVT) Ltd</span>
             </div>
             <p className="text-primary-foreground/80 mb-6 max-w-md">
               Your trusted partner in finding the perfect home. With over 15 years of experience, 

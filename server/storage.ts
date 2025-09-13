@@ -52,7 +52,7 @@ export class MemStorage implements IStorage {
         squareFootage: 2800,
         lotSize: "0.25",
         yearBuilt: 2018,
-        images: ["attached_assets/generated_images/Modern_kitchen_property_cc99da7c.png"],
+        images: ["/assets/a.png"],
         amenities: ["Central Air", "Hardwood Floors", "Granite Countertops", "Walk-in Closet"],
         features: ["Open Floor Plan", "Gourmet Kitchen", "Master Suite", "Two-Car Garage"],
         isActive: true
@@ -72,7 +72,7 @@ export class MemStorage implements IStorage {
         squareFootage: 1950,
         lotSize: "0.1",
         yearBuilt: 2015,
-        images: ["attached_assets/generated_images/Cozy_living_room_31656cca.png"],
+        images: ["/assets/b.png"],
         amenities: ["Fireplace", "Patio", "Storage", "Laundry Room"],
         features: ["Living Room Fireplace", "Private Patio", "Updated Kitchen"],
         isActive: true
@@ -91,7 +91,7 @@ export class MemStorage implements IStorage {
         bathrooms: "2.0",
         squareFootage: 1400,
         yearBuilt: 2020,
-        images: ["attached_assets/generated_images/Master_bedroom_suite_8b398290.png"],
+        images: ["/assets/c.png"],
         amenities: ["City Views", "Balcony", "Gym Access", "Concierge"],
         features: ["Floor-to-Ceiling Windows", "Modern Appliances", "Master Suite"],
         isActive: true
@@ -111,7 +111,7 @@ export class MemStorage implements IStorage {
         squareFootage: 3200,
         lotSize: "0.5",
         yearBuilt: 2010,
-        images: ["attached_assets/generated_images/Family_home_exterior_3c5193dd.png"],
+        images: ["/assets/d.png"],
         amenities: ["Large Yard", "Updated Kitchen", "Hardwood Floors", "Three-Car Garage"],
         features: ["Spacious Layout", "Family Room", "Formal Dining", "Home Office"],
         isActive: true
@@ -131,7 +131,7 @@ export class MemStorage implements IStorage {
         squareFootage: 2100,
         lotSize: "0.08",
         yearBuilt: 1925,
-        images: ["attached_assets/generated_images/Urban_townhouse_81841600.png"],
+        images: ["/assets/e.png"],
         amenities: ["Historic Character", "Updated Systems", "Original Details", "Courtyard"],
         features: ["Restored Original Features", "Modern Kitchen", "Exposed Brick"],
         isActive: true
@@ -151,7 +151,7 @@ export class MemStorage implements IStorage {
         squareFootage: 3500,
         lotSize: "0.75",
         yearBuilt: 2021,
-        images: ["attached_assets/generated_images/Hero_background_luxury_home_6af92596.png"],
+        images: ["/assets/b.png"],
         amenities: ["Panoramic Views", "Pool", "Spa", "Wine Cellar"],
         features: ["Gourmet Kitchen", "Master Suite", "Home Theater", "Guest House"],
         isActive: true

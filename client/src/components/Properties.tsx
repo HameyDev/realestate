@@ -1,92 +1,98 @@
-import PropertyCard from './PropertyCard';
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
-import { useLocation } from 'wouter';
+import PropertyCard from "./PropertyCard";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { useLocation } from "wouter";
 
 // Import property images
-import kitchenImage from '@assets/generated_images/Modern_kitchen_property_cc99da7c.png';
-import livingRoomImage from '@assets/generated_images/Cozy_living_room_31656cca.png';
-import bedroomImage from '@assets/generated_images/Master_bedroom_suite_8b398290.png';
-import familyHomeImage from '@assets/generated_images/Family_home_exterior_3c5193dd.png';
-import townhouseImage from '@assets/generated_images/Urban_townhouse_81841600.png';
+// import kitchenImage from "/assets/Modern_kitchen_property_cc99da7c.png";
+// import livingRoomImage from "/assets/Cozy_living_room_31656cca.png";
+// import bedroomImage from "/assets/Master_bedroom_suite_8b398290.png";
+// import familyHomeImage from "/assets/Family_home_exterior_3c5193dd.png";
+// import townhouseImage from "/assets/generated_images/Urban_townhouse_81841600.png";
 
 export default function Properties() {
   const [, setLocation] = useLocation();
-  
+
   // TODO: Remove mock functionality - replace with actual property data from API
   const properties = [
     {
       id: "1",
-      image: kitchenImage,
+      image: "/assets/a.png",
       title: "Modern Family Home",
       price: "$750,000",
       location: "Maple Ridge Neighborhood",
-      description: "Stunning modern home with gourmet kitchen, open floor plan, and premium finishes throughout. Perfect for entertaining.",
+      description:
+        "Stunning modern home with gourmet kitchen, open floor plan, and premium finishes throughout. Perfect for entertaining.",
       bedrooms: 4,
       bathrooms: 3,
       sqft: 2800,
-      status: 'For Sale' as const
+      status: "For Sale" as const,
     },
     {
-      id: "2", 
-      image: livingRoomImage,
+      id: "2",
+      image: "/assets/b.png",
       title: "Luxury Townhome",
       price: "$425,000",
       location: "Heritage District",
-      description: "Elegant townhome featuring spacious living areas, fireplace, and abundant natural light in desirable location.",
+      description:
+        "Elegant townhome featuring spacious living areas, fireplace, and abundant natural light in desirable location.",
       bedrooms: 3,
       bathrooms: 2,
       sqft: 1950,
-      status: 'For Sale' as const
+      status: "For Sale" as const,
     },
     {
       id: "3",
-      image: bedroomImage, 
+      image: "/assets/c.png",
       title: "Executive Condo",
       price: "$650,000",
       location: "Downtown Core",
-      description: "Sophisticated downtown condo with luxurious master suite, modern amenities, and city views.",
+      description:
+        "Sophisticated downtown condo with luxurious master suite, modern amenities, and city views.",
       bedrooms: 2,
       bathrooms: 2,
       sqft: 1400,
-      status: 'Pending' as const
+      status: "Pending" as const,
     },
     {
       id: "4",
-      image: familyHomeImage,
+      image: "/assets/d.png",
       title: "Suburban Retreat",
-      price: "$595,000", 
+      price: "$595,000",
       location: "Greenwood Estates",
-      description: "Charming family home on quiet street with large yard, updated interior, and move-in ready condition.",
+      description:
+        "Charming family home on quiet street with large yard, updated interior, and move-in ready condition.",
       bedrooms: 5,
       bathrooms: 3,
       sqft: 3200,
-      status: 'For Sale' as const
+      status: "For Sale" as const,
     },
     {
       id: "5",
-      image: townhouseImage,
+      image: "/assets/e.png",
       title: "Historic Townhouse",
       price: "$485,000",
-      location: "Old Town District", 
-      description: "Beautifully restored historic townhouse with original character, modern updates, and prime location.",
+      location: "Old Town District",
+      description:
+        "Beautifully restored historic townhouse with original character, modern updates, and prime location.",
       bedrooms: 3,
       bathrooms: 2,
       sqft: 2100,
-      status: 'For Sale' as const
+      status: "For Sale" as const,
     },
     {
       id: "6",
-      image: kitchenImage,
+      image: "/assets/b.png",
       title: "Contemporary Villa",
       price: "$950,000",
       location: "Hillside Heights",
-      description: "Stunning contemporary home with panoramic views, premium materials, and resort-style backyard.",
+      description:
+        "Stunning contemporary home with panoramic views, premium materials, and resort-style backyard.",
       bedrooms: 4,
       bathrooms: 4,
       sqft: 3500,
-      status: 'Sold' as const
-    }
+      status: "Sold" as const,
+    },
   ];
 
   return (
@@ -98,27 +104,25 @@ export default function Properties() {
             Featured Properties
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Discover our handpicked selection of premium homes in the most desirable neighborhoods
+            Discover our handpicked selection of premium homes in the most
+            desirable neighborhoods
           </p>
         </div>
 
         {/* Properties Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {properties.map((property) => (
-            <PropertyCard
-              key={property.id}
-              {...property}
-            />
+            <PropertyCard key={property.id} {...property} />
           ))}
         </div>
 
         {/* View All Button */}
         <div className="text-center">
-          <Button 
+          <Button
             size="lg"
             variant="outline"
             className="px-8 py-3"
-            onClick={() => setLocation('/properties')}
+            onClick={() => setLocation("/properties")}
             data-testid="button-view-all-properties"
           >
             View All Properties

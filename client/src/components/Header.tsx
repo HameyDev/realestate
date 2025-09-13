@@ -55,7 +55,7 @@ export default function Header() {
           {/* Logo */}
           <div className="flex items-center">
             <Building className="h-8 w-8 text-primary" />
-            <span className="ml-2 text-xl font-bold text-foreground font-serif">Premier Real Estate</span>
+            <span className="ml-2 text-xl font-bold text-foreground font-serif">RWP Builders And Developers</span>
           </div>
 
           {/* Desktop Navigation */}

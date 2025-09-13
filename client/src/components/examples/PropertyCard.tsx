@@ -1,5 +1,5 @@
 import PropertyCard from '../PropertyCard';
-import kitchenImage from '@assets/generated_images/Modern_kitchen_property_cc99da7c.png';
+import kitchenImage from '@attached_assets/generated_images/Modern_kitchen_property_cc99da7c.png';
 
 export default function PropertyCardExample() {
   return (

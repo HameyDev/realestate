@@ -1,6 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, MapPin, Star } from 'lucide-react';
-import heroImage from '@assets/generated_images/Hero_background_luxury_home_6af92596.png';
+
+// ✅ Use an online placeholder image instead of missing local file
+const heroImage =
+  "/assets/hero1.jpg";
 
 export default function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -11,8 +14,8 @@ export default function Hero() {
   };
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className="relative min-h-screen flex items-center justify-center"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${heroImage})`,
@@ -30,18 +33,18 @@ export default function Hero() {
           <Star className="h-5 w-5 fill-current" />
           <span className="text-sm font-medium">Trusted by 500+ Happy Clients</span>
         </div>
-        
+
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 font-serif">
           Find Your Dream Home
         </h1>
-        
+
         <p className="text-xl sm:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto">
           Experience luxury living with our curated collection of premium properties. 
           Professional service, exceptional results.
         </p>
-        
+
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-          <Button 
+          <Button
             size="lg"
             onClick={() => scrollToSection('properties')}
             className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-3 text-lg"
@@ -50,8 +53,8 @@ export default function Hero() {
             View Properties
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-          
-          <Button 
+
+          <Button
             variant="outline"
             size="lg"
             onClick={() => scrollToSection('contact')}
@@ -61,13 +64,13 @@ export default function Hero() {
             Contact Agent
           </Button>
         </div>
-        
+
         <div className="flex items-center justify-center space-x-2 text-gray-300">
           <MapPin className="h-4 w-4" />
           <span className="text-sm">Serving Greater Metropolitan Area</span>
         </div>
       </div>
-      
+
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
