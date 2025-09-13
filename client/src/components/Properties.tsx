@@ -4,11 +4,11 @@ import { ArrowRight } from 'lucide-react';
 import { useLocation } from 'wouter';
 
 // Import property images
-import kitchenImage from '@assets/generated_images/Modern_kitchen_property_cc99da7c.png';
-import livingRoomImage from '@assets/generated_images/Cozy_living_room_31656cca.png';
-import bedroomImage from '@assets/generated_images/Master_bedroom_suite_8b398290.png';
-import familyHomeImage from '@assets/generated_images/Family_home_exterior_3c5193dd.png';
-import townhouseImage from '@assets/generated_images/Urban_townhouse_81841600.png';
+import kitchenImage from '@attached_assets/generated_images/Modern_kitchen_property_cc99da7c.png';
+import livingRoomImage from '@attached_assets/generated_images/Cozy_living_room_31656cca.png';
+import bedroomImage from '@attached_assets/generated_images/Master_bedroom_suite_8b398290.png';
+import familyHomeImage from '@attached_assets/generated_images/Family_home_exterior_3c5193dd.png';
+import townhouseImage from '@attached_assets/generated_images/Urban_townhouse_81841600.png';
 
 export default function Properties() {
   const [, setLocation] = useLocation();
