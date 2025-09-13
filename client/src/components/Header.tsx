@@ -1,12 +1,28 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Home, Building, User, Phone } from 'lucide-react';
+import { useLocation } from 'wouter';
 import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [, setLocation] = useLocation();
 
   const scrollToSection = (sectionId: string) => {
+    // If we're not on the home page, navigate to home first
+    if (window.location.pathname !== '/') {
+      setLocation('/');
+      // Use setTimeout to ensure the navigation completes before scrolling
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      setIsMenuOpen(false);
+      return;
+    }
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -15,11 +31,22 @@ export default function Header() {
   };
 
   const navItems = [
-    { icon: Home, label: 'Home', id: 'home' },
-    { icon: Building, label: 'Properties', id: 'properties' },
-    { icon: User, label: 'About', id: 'about' },
-    { icon: Phone, label: 'Contact', id: 'contact' }
+    { icon: Home, label: 'Home', id: 'home', type: 'scroll' },
+    { icon: Building, label: 'Properties', id: 'properties', type: 'page' },
+    { icon: User, label: 'About', id: 'about', type: 'scroll' },
+    { icon: Phone, label: 'Contact', id: 'contact', type: 'scroll' }
   ];
+
+  const handleNavClick = (item: typeof navItems[0]) => {
+    if (item.type === 'page') {
+      if (item.id === 'properties') {
+        setLocation('/properties');
+      }
+    } else {
+      scrollToSection(item.id);
+    }
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -36,7 +63,7 @@ export default function Header() {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleNavClick(item)}
                 className="flex items-center space-x-1 text-muted-foreground hover:text-foreground transition-colors hover-elevate px-3 py-2 rounded-md"
                 data-testid={`link-${item.id}`}
               >
@@ -74,7 +101,7 @@ export default function Header() {
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavClick(item)}
                   className="flex items-center space-x-3 w-full p-3 rounded-md hover-elevate text-left"
                   data-testid={`mobile-link-${item.id}`}
                 >

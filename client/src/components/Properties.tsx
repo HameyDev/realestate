@@ -1,6 +1,7 @@
 import PropertyCard from './PropertyCard';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { useLocation } from 'wouter';
 
 // Import property images
 import kitchenImage from '@assets/generated_images/Modern_kitchen_property_cc99da7c.png';
@@ -10,6 +11,8 @@ import familyHomeImage from '@assets/generated_images/Family_home_exterior_3c519
 import townhouseImage from '@assets/generated_images/Urban_townhouse_81841600.png';
 
 export default function Properties() {
+  const [, setLocation] = useLocation();
+  
   // TODO: Remove mock functionality - replace with actual property data from API
   const properties = [
     {
@@ -115,7 +118,7 @@ export default function Properties() {
             size="lg"
             variant="outline"
             className="px-8 py-3"
-            onClick={() => console.log('View all properties clicked')}
+            onClick={() => setLocation('/properties')}
             data-testid="button-view-all-properties"
           >
             View All Properties

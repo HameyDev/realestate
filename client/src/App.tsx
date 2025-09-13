@@ -9,6 +9,8 @@ import Properties from "@/components/Properties";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import PropertiesPage from "@/pages/PropertiesPage";
+import PropertyDetailPage from "@/pages/PropertyDetailPage";
 import NotFound from "@/pages/not-found";
 
 function HomePage() {
@@ -30,8 +32,34 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={HomePage} />
+      <Route path="/properties" component={PropertiesListingPage} />
+      <Route path="/properties/:id" component={PropertyDetailPageWithHeader} />
       <Route component={NotFound} />
     </Switch>
+  );
+}
+
+function PropertiesListingPage() {
+  return (
+    <div className="min-h-screen">
+      <Header />
+      <main>
+        <PropertiesPage />
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+function PropertyDetailPageWithHeader() {
+  return (
+    <div className="min-h-screen">
+      <Header />
+      <main>
+        <PropertyDetailPage />
+      </main>
+      <Footer />
+    </div>
   );
 }
 

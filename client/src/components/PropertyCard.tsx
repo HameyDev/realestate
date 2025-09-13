@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Bed, Bath, Square, Eye } from 'lucide-react';
+import { useLocation } from 'wouter';
 
 interface PropertyCardProps {
   id: string;
@@ -28,10 +29,10 @@ export default function PropertyCard({
   sqft,
   status = 'For Sale'
 }: PropertyCardProps) {
+  const [, setLocation] = useLocation();
   
   const handleViewDetails = () => {
-    console.log(`View details for property ${id}: ${title}`);
-    // TODO: Remove mock functionality - implement actual property details modal/page
+    setLocation(`/properties/${id}`);
   };
 
   return (
