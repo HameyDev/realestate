@@ -3,7 +3,7 @@ import { ArrowRight, MapPin, Star } from 'lucide-react';
 
 // ✅ Use an online placeholder image instead of missing local file
 const heroImage =
-  "/assets/hero1.jpg";
+  "/assets/hero1.png";
 
 export default function Hero() {
   const scrollToSection = (sectionId: string) => {
