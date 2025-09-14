@@ -85,13 +85,18 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
+          <div className=" flex gap-3 md:hidden p-2 rounded-md hover-elevate">
+            <ThemeToggle />
+            <button
             className="md:hidden p-2 rounded-md hover-elevate"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             data-testid="button-mobile-menu"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
+
+          </div>
+          
         </div>
 
         {/* Mobile Navigation */}
